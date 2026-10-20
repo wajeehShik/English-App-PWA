@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#172554">
+    <meta name="description" content="تعلّم كلمات إنجليزية جديدة من خلال اختبار تفاعلي.">
+    <title>كلمتي | تعلّم الإنجليزية</title>
+    <link rel="manifest" href="./manifest.json">
+    <link rel="icon" href="./icons/icon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="./css/style.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="./" aria-label="كلمتي - الصفحة الرئيسية">
+          <span class="brand-icon" aria-hidden="true">Aa</span>
+          <span>كلمتي</span>
+        </a>
+        <button id="install-button" class="button button-quiet" type="button" hidden>تثبيت التطبيق</button>
+      </header>
+
+      <section class="intro" aria-labelledby="page-title">
+        <p class="eyebrow">خطوة صغيرة كل يوم</p>
+        <h1 id="page-title">وسّع حصيلتك من الكلمات</h1>
+        <p>تعلّم كلمات إنجليزية جديدة واختبر معرفتك في دقائق.</p>
+      </section>
+
+      <section class="stats-card" aria-label="إحصائيات التعلّم">
+        <div>
+          <span class="stat-value" id="total-answered">٠</span>
+          <span class="stat-label">إجابات</span>
+        </div>
+        <div class="stat-divider" aria-hidden="true"></div>
+        <div>
+          <span class="stat-value" id="correct-answers">٠</span>
+          <span class="stat-label">إجابات صحيحة</span>
+        </div>
+        <div class="stat-divider" aria-hidden="true"></div>
+        <div>
+          <span class="stat-value" id="accuracy">٠٪</span>
+          <span class="stat-label">الدقّة</span>
+        </div>
+      </section>
+
+      <section class="learning-progress settings-card" aria-labelledby="learning-progress-title">
+        <div class="progress-section-heading">
+          <div>
+            <p class="eyebrow">رحلتك التعليمية</p>
+            <h2 id="learning-progress-title">تقدّمك</h2>
+          </div>
+          <span id="learned-count" class="progress-badge"></span>
+        </div>
+        <div class="progress-track learning-progress-track" role="progressbar" aria-label="الكلمات التي تدربت عليها" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <span id="learning-progress-bar"></span>
+        </div>
+        <p id="learning-progress-caption" class="learning-progress-caption"></p>
+        <details class="mistakes-details">
+          <summary>الكلمات التي أخطأت بها <span id="mistakes-count" class="saved-word-count">٠</span></summary>
+          <div id="mistakes-list" class="saved-words-list"></div>
+        </details>
+      </section>
+
+      <section class="quiz-settings" aria-label="إعداد الاختبار">
+        <label for="category-limit">القسم</label>
+        <select id="category-limit">
+          <option value="all">كل الأقسام</option>
+          <option value="home">البيت</option>
+          <option value="conversation">المحادثة</option>
+          <option value="daily">كلمات يومية</option>
+          <option value="travel">السفر</option>
+          <option value="work">العمل</option>
+          <option value="study">الدراسة</option>
+          <option value="food">الطعام</option>
+          <option value="health">الصحة</option>
+          <option value="nature">الطبيعة</option>
+          <option value="custom">كلماتي</option>
+        </select>
+        <label for="question-limit">عدد الأسئلة</label>
+        <select id="question-limit">
+          <option value="5">٥ أسئلة</option>
+          <option value="10">١٠ أسئلة</option>
+          <option value="20">٢٠ سؤالًا</option>
+          <option value="50">٥٠ سؤالًا</option>
+          <option value="100">١٠٠ سؤال</option>
+          <option value="all">كل الكلمات</option>
+        </select>
+        <span id="available-words" class="available-words"></span>
+      </section>
+
+      <section class="quiz-card" aria-labelledby="question-title">
+        <div class="quiz-heading">
+          <div>
+            <p class="eyebrow">اختبار سريع</p>
+            <h2 id="question-title">ما معنى هذه الكلمة؟</h2>
+          </div>
+          <span class="question-count" id="question-count"></span>
+        </div>
+        <div class="progress-track" role="progressbar" aria-label="تقدّم الاختبار" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <span id="progress-bar"></span>
+        </div>
+        <p class="word-prompt" id="word-prompt"></p>
+        <p class="word-example" id="word-example"></p>
+        <button id="speak-button" class="button button-quiet speak-button" type="button">🔊 اسمع الكلمة</button>
+        <div class="answer-list" id="answer-list"></div>
+        <p class="feedback" id="feedback" aria-live="polite"></p>
+        <div class="quiz-actions">
+          <button id="save-word-button" class="button button-quiet" type="button" aria-pressed="false">☆ احفظ الكلمة</button>
+          <span id="auto-next-message" class="auto-next-message" aria-live="polite"></span>
+        </div>
+      </section>
+
+      <details id="saved-words-card" class="settings-card saved-words-card">
+        <summary>كلماتي المحفوظة <span id="saved-word-count" class="saved-word-count">٠</span></summary>
+        <div id="saved-words-list" class="saved-words-list"></div>
+      </details>
+
+      <section class="settings-card add-word-card" aria-labelledby="add-word-title">
+        <h2 id="add-word-title">أضف كلمة أو جملة</h2>
+        <form id="add-word-form" class="add-word-form">
+          <label>أضف
+            <select name="kind">
+              <option value="word">كلمة أو عبارة</option>
+              <option value="sentence">جملة كاملة</option>
+            </select>
+          </label>
+          <label>النص بالإنجليزية
+            <input name="word" required maxlength="240" autocomplete="off" placeholder="مثال: The child is curious.">
+          </label>
+          <label>المعنى بالعربية
+            <input name="meaning" required maxlength="160" autocomplete="off" placeholder="أين المطبخ؟">
+          </label>
+          <label>مثال بالإنجليزية (اختياري)
+            <input name="example" maxlength="200" autocomplete="off" placeholder="Where is the kitchen?">
+          </label>
+          <label>القسم
+            <select name="category">
+              <option value="home">البيت</option>
+              <option value="conversation">المحادثة</option>
+              <option value="daily">كلمات يومية</option>
+              <option value="travel">السفر</option>
+              <option value="work">العمل</option>
+              <option value="study">الدراسة</option>
+              <option value="food">الطعام</option>
+              <option value="health">الصحة</option>
+              <option value="nature">الطبيعة</option>
+            </select>
+          </label>
+          <button class="button button-primary" type="submit">إضافة إلى كلماتي</button>
+          <p id="add-word-message" class="settings-message" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section id="review-card" class="settings-card review-card" aria-labelledby="review-title" hidden>
+        <h2 id="review-title">مراجعة الاختبار</h2>
+        <p id="review-summary"></p>
+        <div id="review-list" class="saved-words-list"></div>
+        <button id="review-again-button" class="button button-primary" type="button">اختبر الكلمات التي أخطأت بها</button>
+      </section>
+
+      <details class="settings-card">
+        <summary>الإعدادات</summary>
+        <div class="settings-content">
+          <label class="setting-row" for="reminder-toggle">
+            <span>
+              <strong>تذكير لمراجعة الكلمات</strong>
+              <small>يعمل التذكير أثناء بقاء التطبيق مفتوحًا. الإشعارات بعد إغلاقه تحتاج خادمًا.</small>
+            </span>
+            <input id="reminder-toggle" type="checkbox">
+          </label>
+          <label class="reminder-frequency" for="reminder-frequency">كرّر التذكير كل
+            <select id="reminder-frequency">
+              <option value="2">ساعتين</option>
+              <option value="4">٤ ساعات</option>
+              <option value="8">٨ ساعات</option>
+            </select>
+          </label>
+          <button id="reset-button" class="button button-quiet" type="button">إعادة ضبط الإحصائيات</button>
+          <p id="settings-message" class="settings-message" aria-live="polite"></p>
+        </div>
+      </details>
+
+      <footer class="footer">تعلّم كلمة جديدة، وكرّرها غدًا ✨</footer>
+    </main>
+    <script type="module" src="./js/main.js"></script>
+  </body>
+</html>

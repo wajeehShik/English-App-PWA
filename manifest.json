@@ -1,0 +1,20 @@
+{
+  "name": "كلمتي - تعلّم الإنجليزية",
+  "short_name": "كلمتي",
+  "description": "تعلّم كلمات إنجليزية جديدة من خلال اختبار تفاعلي.",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4f7fb",
+  "theme_color": "#172554",
+  "icons": [
+    {
+      "src": "./icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
