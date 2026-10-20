@@ -145,7 +145,6 @@ function handleAnswer(answer) {
 
   if (!isCorrect) {
     const savedWordsCard = document.querySelector("#saved-words-card");
-    savedWordsCard.open = true;
     savedWordsCard.scrollIntoView({ behavior: "smooth", block: "center" });
   }
 
@@ -286,6 +285,20 @@ document.querySelector("#category-limit").addEventListener("change", () => {
 });
 document.querySelector("#question-limit").addEventListener("change", startQuiz);
 document.querySelector("#add-word-form").addEventListener("submit", addCustomWord);
+
+document.querySelector(".main-nav").addEventListener("click", (event) => {
+  const link = event.target.closest("a[href^='#']");
+  if (!link) return;
+  const destination = document.querySelector(link.getAttribute("href"));
+  if (destination?.tagName === "DETAILS") {
+    event.preventDefault();
+    document.querySelectorAll(".details-panel").forEach((panel) => {
+      panel.open = panel === destination;
+    });
+    window.location.hash = link.hash;
+    destination.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+});
 
 document.querySelector("#save-word-button").addEventListener("click", (event) => {
   const button = event.currentTarget;

@@ -13,88 +13,62 @@
   <body>
     <main class="app-shell">
       <header class="topbar">
-        <a class="brand" href="./" aria-label="كلمتي - الصفحة الرئيسية">
+        <a class="brand" href="#home" aria-label="كلمتي - الصفحة الرئيسية">
           <span class="brand-icon" aria-hidden="true">Aa</span>
           <span>كلمتي</span>
         </a>
-        <button id="install-button" class="button button-quiet" type="button" hidden>تثبيت التطبيق</button>
+        <nav class="main-nav" aria-label="التنقل الرئيسي">
+          <a href="#home">التعلّم</a>
+          <a href="#saved-words-card">المحفوظة</a>
+          <a href="#learning-details">تقدّمي</a>
+          <a href="#add-word-card">أضف كلمة</a>
+          <a href="#settings-card">الإعدادات</a>
+        </nav>
+        <button id="install-button" class="button button-quiet install-button" type="button" hidden>تثبيت التطبيق</button>
       </header>
 
-      <section class="intro" aria-labelledby="page-title">
-        <p class="eyebrow">خطوة صغيرة كل يوم</p>
-        <h1 id="page-title">وسّع حصيلتك من الكلمات</h1>
-        <p>تعلّم كلمات إنجليزية جديدة واختبر معرفتك في دقائق.</p>
+      <section id="home" class="intro" aria-labelledby="page-title">
+        <div class="intro-copy">
+          <p class="eyebrow">مساحة تعلّمك اليومية</p>
+          <h1 id="page-title">تعلّم الإنجليزية،<br>كلمةً كلمة.</h1>
+          <p>جلسة قصيرة اليوم تصنع فرقًا كبيرًا غدًا.</p>
+        </div>
+        <a class="intro-link" href="#quiz-start">ابدأ جلستك <span aria-hidden="true">←</span></a>
       </section>
 
-      <section class="stats-card" aria-label="إحصائيات التعلّم">
-        <div>
-          <span class="stat-value" id="total-answered">٠</span>
-          <span class="stat-label">إجابات</span>
-        </div>
-        <div class="stat-divider" aria-hidden="true"></div>
-        <div>
-          <span class="stat-value" id="correct-answers">٠</span>
-          <span class="stat-label">إجابات صحيحة</span>
-        </div>
-        <div class="stat-divider" aria-hidden="true"></div>
-        <div>
-          <span class="stat-value" id="accuracy">٠٪</span>
-          <span class="stat-label">الدقّة</span>
-        </div>
-      </section>
-
-      <section class="learning-progress settings-card" aria-labelledby="learning-progress-title">
-        <div class="progress-section-heading">
-          <div>
-            <p class="eyebrow">رحلتك التعليمية</p>
-            <h2 id="learning-progress-title">تقدّمك</h2>
-          </div>
-          <span id="learned-count" class="progress-badge"></span>
-        </div>
-        <div class="progress-track learning-progress-track" role="progressbar" aria-label="الكلمات التي تدربت عليها" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-          <span id="learning-progress-bar"></span>
-        </div>
-        <p id="learning-progress-caption" class="learning-progress-caption"></p>
-        <details class="mistakes-details">
-          <summary>الكلمات التي أخطأت بها <span id="mistakes-count" class="saved-word-count">٠</span></summary>
-          <div id="mistakes-list" class="saved-words-list"></div>
-        </details>
-      </section>
-
-      <section class="quiz-settings" aria-label="إعداد الاختبار">
-        <label for="category-limit">القسم</label>
-        <select id="category-limit">
-          <option value="all">كل الأقسام</option>
-          <option value="home">البيت</option>
-          <option value="conversation">المحادثة</option>
-          <option value="daily">كلمات يومية</option>
-          <option value="travel">السفر</option>
-          <option value="work">العمل</option>
-          <option value="study">الدراسة</option>
-          <option value="food">الطعام</option>
-          <option value="health">الصحة</option>
-          <option value="nature">الطبيعة</option>
-          <option value="custom">كلماتي</option>
-        </select>
-        <label for="question-limit">عدد الأسئلة</label>
-        <select id="question-limit">
-          <option value="5">٥ أسئلة</option>
-          <option value="10">١٠ أسئلة</option>
-          <option value="20">٢٠ سؤالًا</option>
-          <option value="50">٥٠ سؤالًا</option>
-          <option value="100">١٠٠ سؤال</option>
-          <option value="all">كل الكلمات</option>
-        </select>
-        <span id="available-words" class="available-words"></span>
-      </section>
-
-      <section class="quiz-card" aria-labelledby="question-title">
+      <section id="quiz-start" class="quiz-card" aria-labelledby="question-title">
         <div class="quiz-heading">
           <div>
-            <p class="eyebrow">اختبار سريع</p>
+            <p class="eyebrow">جلسة اليوم</p>
             <h2 id="question-title">ما معنى هذه الكلمة؟</h2>
           </div>
           <span class="question-count" id="question-count"></span>
+        </div>
+        <div class="quiz-settings" aria-label="إعداد الاختبار">
+          <label for="category-limit">القسم</label>
+          <select id="category-limit">
+            <option value="all">كل الأقسام</option>
+            <option value="home">البيت</option>
+            <option value="conversation">المحادثة</option>
+            <option value="daily">كلمات يومية</option>
+            <option value="travel">السفر</option>
+            <option value="work">العمل</option>
+            <option value="study">الدراسة</option>
+            <option value="food">الطعام</option>
+            <option value="health">الصحة</option>
+            <option value="nature">الطبيعة</option>
+            <option value="custom">كلماتي</option>
+          </select>
+          <label for="question-limit">الأسئلة</label>
+          <select id="question-limit">
+            <option value="5">٥ أسئلة</option>
+            <option value="10">١٠ أسئلة</option>
+            <option value="20">٢٠ سؤالًا</option>
+            <option value="50">٥٠ سؤالًا</option>
+            <option value="100">١٠٠ سؤال</option>
+            <option value="all">كل الكلمات</option>
+          </select>
+          <span id="available-words" class="available-words"></span>
         </div>
         <div class="progress-track" role="progressbar" aria-label="تقدّم الاختبار" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
           <span id="progress-bar"></span>
@@ -110,13 +84,58 @@
         </div>
       </section>
 
-      <details id="saved-words-card" class="settings-card saved-words-card">
-        <summary>كلماتي المحفوظة <span id="saved-word-count" class="saved-word-count">٠</span></summary>
+      <section id="saved-words-card" class="settings-card saved-words-card" aria-labelledby="saved-words-title">
+        <div class="section-title-row">
+          <div>
+            <p class="eyebrow">مراجعة سريعة</p>
+            <h2 id="saved-words-title">كلماتي المحفوظة</h2>
+          </div>
+          <span id="saved-word-count" class="saved-word-count">٠</span>
+        </div>
         <div id="saved-words-list" class="saved-words-list"></div>
+      </section>
+
+      <details id="learning-details" class="details-panel">
+        <summary><span>تفاصيل التعلّم</span><small>إحصائياتك وتقدّمك والكلمات التي تحتاج مراجعة</small></summary>
+        <div class="details-content">
+          <section class="stats-card" aria-label="إحصائيات التعلّم">
+            <div>
+              <span class="stat-value" id="total-answered">٠</span>
+              <span class="stat-label">إجابات</span>
+            </div>
+            <div class="stat-divider" aria-hidden="true"></div>
+            <div>
+              <span class="stat-value" id="correct-answers">٠</span>
+              <span class="stat-label">إجابات صحيحة</span>
+            </div>
+            <div class="stat-divider" aria-hidden="true"></div>
+            <div>
+              <span class="stat-value" id="accuracy">٠٪</span>
+              <span class="stat-label">الدقّة</span>
+            </div>
+          </section>
+          <section class="learning-progress settings-card" aria-labelledby="learning-progress-title">
+            <div class="progress-section-heading">
+              <div>
+                <p class="eyebrow">رحلتك التعليمية</p>
+                <h2 id="learning-progress-title">تقدّمك</h2>
+              </div>
+              <span id="learned-count" class="progress-badge"></span>
+            </div>
+            <div class="progress-track learning-progress-track" role="progressbar" aria-label="الكلمات التي تدربت عليها" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <span id="learning-progress-bar"></span>
+            </div>
+            <p id="learning-progress-caption" class="learning-progress-caption"></p>
+            <details class="mistakes-details">
+              <summary>الكلمات التي أخطأت بها <span id="mistakes-count" class="saved-word-count">٠</span></summary>
+              <div id="mistakes-list" class="saved-words-list"></div>
+            </details>
+          </section>
+        </div>
       </details>
 
-      <section class="settings-card add-word-card" aria-labelledby="add-word-title">
-        <h2 id="add-word-title">أضف كلمة أو جملة</h2>
+      <details id="add-word-card" class="details-panel add-word-card">
+        <summary><span>أضف كلمة أو جملة</span><small>أضف مفرداتك الخاصة إلى الاختبار</small></summary>
         <form id="add-word-form" class="add-word-form">
           <label>أضف
             <select name="kind">
@@ -149,7 +168,7 @@
           <button class="button button-primary" type="submit">إضافة إلى كلماتي</button>
           <p id="add-word-message" class="settings-message" aria-live="polite"></p>
         </form>
-      </section>
+      </details>
 
       <section id="review-card" class="settings-card review-card" aria-labelledby="review-title" hidden>
         <h2 id="review-title">مراجعة الاختبار</h2>
@@ -158,8 +177,8 @@
         <button id="review-again-button" class="button button-primary" type="button">اختبر الكلمات التي أخطأت بها</button>
       </section>
 
-      <details class="settings-card">
-        <summary>الإعدادات</summary>
+      <details id="settings-card" class="details-panel">
+        <summary><span>الإعدادات</span><small>التذكير وخيارات التطبيق</small></summary>
         <div class="settings-content">
           <label class="setting-row" for="reminder-toggle">
             <span>
